@@ -22,7 +22,7 @@ public class Main {
                     } else {
                         System.out.println("Login failed! ");
                         System.out.println("1- Check your email or password ");
-                        System.out.println("2- Are you AlReady have an account?Register ");
+                        System.out.println("2- Are you dont AlReady have an account?Register ");
                         System.out.print("Choose an option: ");
                         int Login_choice = scanner.nextInt();
                         if (Login_choice == 1) {

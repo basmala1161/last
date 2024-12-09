@@ -109,7 +109,7 @@ public class Restaurant implements Serializable {
     }
 
     // load data from program to code ( input stream )
-    public static ArrayList<Restaurant> loadRestaurantsFromFile()
+    protected static ArrayList<Restaurant> loadRestaurantsFromFile()
     {
         // ois: ObjectInputStream
         try (ObjectInputStream ois = new ObjectInputStream(new FileInputStream("Restaurants.txt"))) {

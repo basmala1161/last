@@ -140,4 +140,11 @@ public class Order {
 
         return orderDetails.toString();
     }
+
+    public String getOrderLocation() {
+        return  orderLocation;
+
+
+
+    }
 }
