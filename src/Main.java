@@ -3,6 +3,7 @@ import java.util.ArrayList;
 import java.util.Scanner;
 public class Main {
     public static void main(String[] args) throws IOException {
+        System.out.println("Current Working Directory: " + new File("     ").getAbsolutePath());
 
         Scanner scanner;
         customer customerData = new customer();
@@ -42,49 +43,70 @@ public class Main {
                     customerData.governorate();
                     //restaurant
                     int choice_Restaurant = Restaurant.afterLog_in(1);
+
+
                     while (true) {
+                        while (true) {
+                            System.out.println("========================================");
+                            System.out.println("1 - Create another order");
+                            System.out.println("2 - Update the order");
+                            System.out.println("3 - Cancel this order and make another");
+                            System.out.println("4 - Add a review");
+                            System.out.println("5 - View reviews");
+                            System.out.println("6 - Log out");
+                            System.out.print("Choose from (1 - 6): ");
+                            int orderChoice = scanner.nextInt();
+                            scanner.nextLine(); // Consume the newline character
+
+                            Order order = new Order(1, customerData.address);
+
+                            if (orderChoice == 1) {
+                                order.Createorder(choice_Restaurant);
+                            } else if (orderChoice == 2) {
+                                order.update(choice_Restaurant);
+                            } else if (orderChoice == 3) {
+                                order.changeState("canceled");
+                            } else if (orderChoice == 4 || orderChoice == 5) {
+                                RestaurantWithReviews selectedRestaurant = new RestaurantWithReviews("Restaurant Name", "Restaurant Location", "Restaurant Category");
+                                selectedRestaurant.loadReviewsFromFile("reviews.dat");
+
+                                // add a review
+                                if (orderChoice == 4) {
+                                    System.out.print("Enter your name: ");
+                                    String reviewerName = scanner.nextLine();
+                                    System.out.print("Enter rating (1-5): ");
+                                    int rating = scanner.nextInt();
+                                    scanner.nextLine();
+                                    System.out.print("Enter your comment: ");
+                                    String comment = scanner.nextLine();
+
+                                    selectedRestaurant.addReview(reviewerName, rating, comment, "reviews.dat");
+                                    System.out.println("Review added successfully!");
+                                } else { // view reviews
+                                    selectedRestaurant.displayReviews();
+                                }
 
 
-                        System.out.println("========================================");
-                        System.out.println("1 - create another order");
-                        System.out.println("2 - update the order");  //error
-                        System.out.println("3 - cancel this order and make another");
-                        System.out.println("4 - Log out");
-                        System.out.print("choose from (1 - 4) :");
-                        int Order_choice = scanner.nextInt();
-                        Order order = new Order(1, customerData.address);
-                        if (Order_choice == 1) {
-
-                            order.Createorder(choice_Restaurant);
-                        } else if (Order_choice==2) {
-                            order.update(choice_Restaurant);
-
+                            } else {
+                                break;
+                            }
                         }
-                        else if (Order_choice == 3) {
-                            order.changeState("canceled");
-                        }
-                        else {
-                            break;
-                        }
+
+
+                        System.out.println("====== Thank you ======");
+
                     }
 
-
-
-
-
-                    System.out.println("====== Thank you ======");
-
+                } else {
+                    System.out.println("Invalid choice ,please choose from (1-3)");
+                    continue;
                 }
-
-            } else {
-                System.out.println("Invalid choice ,please choose from (1-3)");
-                continue;
+                break;
             }
-            break;
+
         }
 
     }
-
 }
 
 
@@ -126,6 +148,33 @@ public class Main {
 //                          System.out.println("Invalid restaurant choice.");
 //                          continue;
 //                      }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 
